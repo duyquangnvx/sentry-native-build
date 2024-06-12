@@ -40,14 +40,14 @@ jobs:
           sudo apt-get purge -y libicu-dev
           sudo apt-get update
           sudo apt-get install -y \
-		        libcurl4-openssl-dev \
-		        cmake
+          libcurl4-openssl-dev \
+          cmake
       - name: Download sentry-native version
         run: |
           mkdir -p sentry-native \
           cd sentry-native \
-       	  curl -L -O https://github.com/getsentry/sentry-native/releases/download/0.7.1/sentry-native.zip \
-       	  unzip sentry-native.zip
+          curl -L -O https://github.com/getsentry/sentry-native/releases/download/0.7.1/sentry-native.zip \
+          unzip sentry-native.zip
       - name: Build
         run: |
           mkdir -p sentry-native/build \
