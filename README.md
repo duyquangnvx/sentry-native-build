@@ -1,6 +1,6 @@
 # Prebuilt sentry-native
 
-This project builds the official [sentry-native](https://docs.sentry.io/platforms/native/) binaries for Ubuntu 18.04 and 22.04 using GitHub actions runners.
+This project builds the official [sentry-native](https://docs.sentry.io/platforms/native/) binaries for and 22.04 using GitHub actions runners.
 
 ## How to use this repo
 
