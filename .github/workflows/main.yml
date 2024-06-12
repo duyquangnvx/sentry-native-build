@@ -20,8 +20,8 @@ on:
 
 jobs:
   build:
-    name: "Build ${{ matrix.config.os }}"
-    runs-on: ${{ matrix.config.os }}
+    name: "Build ${{ matrix.os }}"
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
@@ -30,7 +30,7 @@ jobs:
     steps:
       - id: config
         run: |
-          artefact_name="sentry-native-${{ env.sentry_native_version }}-${{ matrix.config.os }}.tar.gz"
+          artefact_name="sentry-native-${{ env.sentry_native_version }}-${{ matrix.os }}.tar.gz"
           echo "artefact_name=$artefact_name" >> $GITHUB_OUTPUT
       - name: Install dependencies
         run: |
@@ -90,20 +90,19 @@ jobs:
   upload:
     if: contains(github.ref, 'tags/v')
 
-    name: "Upload ${{ matrix.config.artefact }} to release"
+    name: "Upload ${{ matrix.os }} to release"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        config:
-          - artefact: ${{ matrix.os }}-x64
+        os: [ubuntu-22.04, ubuntu-18.04]
     needs: release
 
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
         env:
-          artefact_name: sentry-native-${{ env.sentry_native_version }}-${{ matrix.config.artefact }}.tar.gz 
+          artefact_name: sentry-native-${{ env.sentry_native_version }}-${{ matrix.os }}.tar.gz 
         with:
           name: "${{ env.artefact_name }}"
           path: ./
@@ -111,7 +110,7 @@ jobs:
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          artefact_name: sentry-native-${{ env.sentry_native_version }}-${{ matrix.config.artefact }}.tar.gz 
+          artefact_name: sentry-native-${{ env.sentry_native_version }}-${{ matrix.os }}.tar.gz 
         with:
           upload_url: ${{ needs.release.outputs.upload_url }}
           asset_path: "./${{ env.artefact_name }}"
