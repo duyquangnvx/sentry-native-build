@@ -51,7 +51,7 @@ jobs:
       - name: Build
         run: |
           mkdir -p sentry-native/build
-          cd sentry-native/build
+          cd sentry-native
           cmake .. -DBUILD_SHARED_LIBS=ON -DSENTRY_BUILD_TESTS=OFF -DSENTRY_BUILD_EXAMPLES=OFF -DSENTRY_BUILD_SHARED_LIBS=ON
           cmake --build build --parallel
           cmake --install build --prefix ${{ github.workspace }}/opt/sentry-native
