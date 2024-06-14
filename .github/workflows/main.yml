@@ -46,7 +46,7 @@ jobs:
         run: |
           mkdir -p sentry-native
           cd sentry-native
-          curl -L -O https://github.com/getsentry/sentry-native/releases/download/0.7.1/sentry-native.zip
+          curl -L -O https://github.com/getsentry/sentry-native/releases/download/${{ env.sentry_native_version }}/sentry-native.zip
           unzip sentry-native.zip
       - name: Build
         run: |
