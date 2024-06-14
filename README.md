@@ -22,7 +22,7 @@ Use `curl` to download and extract to `/opt/sentry-native`:
 
     curl -L https://github.com/constructpm/sentry-native-build/releases/download/v5.15.8/sentry-native-5.15.8-$PLATFORM.tar.gz | sudo tar -xJC /opt
 
-where `$PLATFORM` is `ubuntu-18.04` or `ubuntu-22.04`.
+where `$PLATFORM` is currently restricted to `ubuntu-22.04`.
 
 
 ## Details
